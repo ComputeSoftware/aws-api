@@ -297,7 +297,7 @@
   (delay
     (let [idx (atom 0)]
       (Executors/newFixedThreadPool
-       4
+       10
        (reify ThreadFactory
          (newThread [_ runnable]
            (doto (.newThread (Executors/defaultThreadFactory) runnable)

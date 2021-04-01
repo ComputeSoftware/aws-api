@@ -34,3 +34,7 @@
 ;; See https://github.com/aws/aws-sdk-java-v2/blob/985ec92c0dfac868b33791fe4623296c68e2feab/services/glacier/src/main/java/software/amazon/awssdk/services/glacier/internal/GlacierExecutionInterceptor.java#L40
 (defmethod modify-http-request "glacier" [service op-map http-request]
   (assoc-in http-request [:headers "x-amz-glacier-version"] (get-in service [:metadata :apiVersion])))
+
+(defmethod modify-http-request "savingsplans" [service op-map http-request]
+  ;; https://github.com/cognitect-labs/aws-api/issues/168
+  (assoc-in http-request [:headers "content-type"] "application/json"))
